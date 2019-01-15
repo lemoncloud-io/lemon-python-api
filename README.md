@@ -33,3 +33,10 @@ pip 18.1
 # script로 실행하기. (sls wsgi 으로 실행함!) - for dev.
 $ npm run server-local
 ```
+
+
+
+# TODO
+
+- load keys: https://serverless.com/blog/serverless-secrets-api-keys/
+- use tensorflow : https://serverless.com/blog/using-tensorflow-serverless-framework-deep-learning-image-recognition/
