@@ -10,7 +10,8 @@
         "!deploy": "----- gulp 빌드후 dist 폴더에 압축한 다음, serverless를 통해서 deploy 실행 -----",
         "deploy.lemon": "sls deploy --profile lemon --stage dev",
         "!serve": "----- run in production mode (pip install waitress) -----",
-        "serve.lemon": "waitress-serve --call 'src:create_app'",
+        "serve.none": "waitress-serve --call 'src:create_app'",
+        "serve.lemon": "waitress-serve --port=8201 app:app",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {

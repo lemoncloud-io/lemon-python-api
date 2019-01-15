@@ -49,8 +49,10 @@ def putHello(id):
 
     # name = request.form['name']           # post parameter
     name = request.args['name']             # url parameter (see http://flask.pocoo.org/docs/1.0/api/#flask.Request)    
-    err = 'Unknown'
+    err = 'Unknown Error'
 
+    print("Hello ID:%d - %s %s / %s %s <- %s"%(id, mth, name, cty, cec, jsonify(jsn)))
+    
     # return "Hello ID:%d - %s %s / %s %s <- %s"%(id, mth, name, cty, cec, jsonify(jsn))
     # abort(404, "Post id {0} doesn't exist.".format(id))
     return jsonify(name=name, method=mth, type=cty, input=jsn)          # response as json.

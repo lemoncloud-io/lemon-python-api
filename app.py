@@ -21,4 +21,4 @@ if __name__ == "__main__":
     print(("* Loading Keras model and Flask starting server..."
     "please wait until server has fully started"))
     # host='0.0.0.0' parameter makes the server accessible from external IPs.
-    app.run(host='0.0.0.0', threaded=False,port=8201)
+    app.run(host='0.0.0.0', threaded=False, port=8201)
