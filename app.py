@@ -5,8 +5,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello World!"
-
+    import os
+    buf = []
+    for a in os.environ:
+        if a.startswith('AWS_') or a.startswith('npm_'): continue
+        buf.append("> "+a+"="+os.getenv(a))
+    return "Hello World!" + "\r\n" + "\n".join(buf)
 
 # if this is the main thread of execution first load the model and then start the server
 if __name__ == "__main__":
