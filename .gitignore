@@ -1,0 +1,16 @@
+# Python
+venv
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# node_modules
+node_modules
+
+# serverless
+.requirements
+.serverless
+
+# vscode
+.vscode
