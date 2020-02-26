@@ -24,6 +24,11 @@ pip 18.1
 
 # module설처하고, 반드시 requirements에 추가해줘야 함!!!
 (venv) $ pip install flask
+
+# 필요한 모듈 설치하기.
+(venv3) $ pip install -r requirements.txt
+
+# NOTE - 모듈 추가시 requirements에 업데이트하기.
 (venv) $ pip freeze > requirements.txt
 ```
 
