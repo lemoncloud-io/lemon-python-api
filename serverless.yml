@@ -10,30 +10,43 @@ service: lemon-python-api
 plugins:
   - serverless-python-requirements
   - serverless-wsgi
+  - serverless-prune-plugin
+  - '@cruglobal/serverless-merge-config'
 
 #------------------------------------------------
 # Custom
 #------------------------------------------------
 custom:
   CORE:                                         # Core Configuration.
-    profile: ${opt:profile, 'none'}             # run option `--profile`
+    profile: ${param:profile, 'none'}           # run option `--profile`
     region: ${opt:region, 'ap-northeast-2'}     # run option `--region` `-r`
     stage: ${opt:stage, 'dev'}                  # run option `--stage` `-s`
-    env: ${opt:env, 'env.yml'}                  # run option `--env`
-  CONF: ${file(./config.js):CONF}               # config.js 에서 CONF() 함수 호출하여 가져옴.
+    env: ${param:env, './env/none.yml'}         # run option `--env`
+  CONF: ${file(./env/config.js):CONF}           # `config.js` 에서 CONF() 함수 호출하여 가져옴.
   wsgi:
     app: app.app
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
+  #------------------------------------------------
+  # serverless-offline
+  #------------------------------------------------
+  serverless-offline:
+    port: 5000
+  #------------------------------------------------
+  # pruning old versions
+  #------------------------------------------------
+  prune:
+    automatic: true
+    number: 3
 
 #------------------------------------------------
 # Provider
 #------------------------------------------------
 provider:
   name: aws
-  profile: ${opt:profile, 'none'}
-  stage: ${opt:stage, 'dev'}
+  profile: ${self:custom.CORE.profile}
+  stage: ${self:custom.CORE.stage}
 
   # you can overwrite defaults here
   memorySize: 128
@@ -87,10 +100,14 @@ provider:
 #------------------------------------------------
 functions:
   app:
-    handler: wsgi.handler
+    handler: wsgi_handler.handler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http:
+          path: /
+          method: get
+          cors: true
+  #   - http: ANY /
+  #   - http: 'ANY {proxy+}'
   # getUser:
   #   handler: wsgi.handler
   #   events:

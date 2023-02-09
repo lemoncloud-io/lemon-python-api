@@ -1,17 +1,17 @@
 {
     "name": "lemon-python-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "AWS Lambda Serverless example with Python3",
     "main": "index.js",
     "scripts": {
         "!server": "----- local에서 실행하기 (개발용) -----",
         "python-local": "ENV=lemon STAGE=local python app.py --port 8201",
-        "server-local": "sls wsgi serve --profile lemon --port 8201",
+        "server-lemon": "sls wsgi serve --param='profile=lemon' --port 8201",
         "!deploy": "----- gulp 빌드후 dist 폴더에 압축한 다음, serverless를 통해서 deploy 실행 -----",
-        "deploy.lemon": "sls deploy --profile lemon --stage dev",
+        "deploy.lemon": "sls deploy  --param='profile=lemon' --stage dev",
         "!serve": "----- run in production mode (pip install waitress) -----",
-        "serve.none": "waitress-serve --call 'src:create_app'",
-        "serve.lemon": "waitress-serve --port=8201 app:app",
+        "server.none": "waitress-serve --call 'src:create_app'",
+        "server.lemon": "waitress-serve --port=8201 --call app:app",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -26,7 +26,15 @@
     },
     "homepage": "https://github.com/lemoncloud-io/lemon-python-api#readme",
     "devDependencies": {
+        "@cruglobal/serverless-merge-config": "^1.1.0",
+        "serverless": "^3.27.0",
+        "serverless-offline": "^12.0.4",
+        "serverless-prune-plugin": "^2.0.1",
         "serverless-python-requirements": "^4.3.0",
-        "serverless-wsgi": "^1.7.4"
+        "serverless-wsgi": "^3.0.1"
+    },
+    "private": true,
+    "engines": {
+        "node": ">=16.17.0"
     }
 }

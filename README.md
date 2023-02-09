@@ -18,9 +18,9 @@ $ pip3 install virtualenv virtualenvwrapper
 $ virtualenv venv --python=python3
 $ source venv/bin/activate
 $ py -V
-Python 3.6.5
+Python 3.10.8
 $ pip -V
-pip 18.1
+pip 23.0
 
 # module설처하고, 반드시 requirements에 추가해줘야 함!!!
 (venv) $ pip install flask
